@@ -1,6 +1,6 @@
 # Build stage
 FROM node:lts-alpine as build-stage
-MAINTAINER Natan Vieira
+LABEL MAINTAINER="Natan Vieira Do Nascimento <natanvnascimento@gmail.com>"
 
 WORKDIR /app
 COPY package*.json ./
