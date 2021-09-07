@@ -20,6 +20,5 @@ Check out the [Official Documentation](https://katan.org) for installation steps
 If your issue is related to some Katan (backend) functionality, redirect your issue to [main project issues](https://github.com/KatanPanel/Katan/issues).
 
 ## License
-katan-web-ui is licensed under the [MIT](https://github.com/KatanPanel/katan-web-ui/blob/main/LICENSE) license.
-
+katan-web-ui is licensed under the [MIT](https://github.com/KatanPanel/katan-web-ui/blob/main/LICENSE) license.\
 All icons used in Katan Web UI project are made by [Pixel Perfect](https://www.flaticon.com/br/autores/pixel-perfect) from [www.flaticon.com](https://www.flaticon.com).
