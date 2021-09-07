@@ -6,5 +6,7 @@ services:
         ports:
             - "80:80"
         environment:
-            - VUE_APP_KATAN_SERVER_API=http://0.0.0.0:1000/
-            - VUE_APP_KATAN_SERVER_WS=ws://0.0.0.0:1000/
+            - VUE_APP_KATAN_SERVER_API=https://0.0.0.0:8080/
+            - VUE_APP_KATAN_SERVER_WS=wss://0.0.0.0:8080/
+        networks: 
+            - katan-internal
