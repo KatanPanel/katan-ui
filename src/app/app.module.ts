@@ -1,3 +1,4 @@
+import { UserSettingsStore } from "@/app/user-settings/store/user-settings.store";
 /*
  * Copyright (c) 2020-present Katan
  *
@@ -90,6 +91,30 @@ export default class AppModule extends KatanModule {
 			defaultClass: "v--tooltip",
 			defaultBoundariesElement: document.body
 		});
+
+		// detect system theme change
+		if (window.matchMedia) {
+			window
+				.matchMedia("(prefers-color-scheme: dark)")
+				.addEventListener("change", (e) => {
+					const userSettingsStore = this.container.get<
+						UserSettingsStore
+					>(UserSettingsStore);
+
+					// only update if you don't have any preferred theme selected
+					if (
+						userSettingsStore.getSettings.theme !==
+						AppSystemDefaultTheme
+					)
+						return;
+
+					userSettingsStore.updateSettings({
+						settings: {
+							theme: AppSystemDefaultTheme
+						}
+					});
+				});
+		}
 
 		// disable tooltips on mobile devices
 		(VTooltip as any).enabled = window.innerWidth >= 768;
