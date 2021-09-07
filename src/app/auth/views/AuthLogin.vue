@@ -26,7 +26,7 @@
 		<p v-if="error" class="error v--text-error">
 			{{ $t(`errors.${error}`) }}
 		</p>
-		<v-form class="form" @submit.prevent="login">
+		<v-form class="form" @submit.native.prevent="login">
 			<v-form-input-group>
 				<v-form-input
 					v-model="credentials.username"
@@ -120,7 +120,7 @@ export default class AuthLogin extends Vue {
 	}
 
 	loginCompleted() {
-		this.$router.replace({ name: "home" });
+		// this.$router.replace({ name: "home" });
 	}
 
 	loginFailed(error: AxiosError): void {
