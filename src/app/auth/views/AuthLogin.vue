@@ -120,7 +120,7 @@ export default class AuthLogin extends Vue {
 	}
 
 	loginCompleted() {
-		// this.$router.replace({ name: "home" });
+		this.$router.replace({ name: "home" });
 	}
 
 	loginFailed(error: AxiosError): void {
