@@ -20,6 +20,18 @@
  * SOFTWARE.
  */
 
+.v-step {
+	background-color: var(--kt-primary-color) !important;
+}
+
+.v-step__header {
+	background-color: var(--kt-primary-darker-color) !important;
+}
+
 .v-tour__target--highlighted {
 	box-shadow: 0 0 0 99999px rgba(0, 0, 0, 0.4) !important;
+}
+
+.v-step__arrow:before {
+	background-color: var(--kt-primary-darker-color) !important;
 }
