@@ -23,23 +23,20 @@
 <template>
 	<aside class="sidebar">
 		<AppSidebarItemList>
-			<AppSidebarItem
-				:link="{ name: 'home' }"
-				:tooltip="$t('navigation.sidebar.links.home')"
-			>
+			<AppSidebarItem :link="{ name: 'home' }">
 				<TheLogo :white="true" class="logo" />
 			</AppSidebarItem>
 		</AppSidebarItemList>
 		<AppSidebarItemList>
 			<AppSidebarItem
 				:link="{ name: 'system.accounts' }"
-				:tooltip="$t('navigation.sidebar.links.apps')"
+				:tooltip="$t('navigation.sidebar.tooltips.modules')"
 			>
 				<v-icon name="apps" />
 			</AppSidebarItem>
 			<AppSidebarItem
 				:link="{ name: 'role', params: { id: '3' } }"
-				:tooltip="$t('navigation.sidebar.links.add')"
+				:tooltip="$t('navigation.sidebar.tooltips.new-resource')"
 			>
 				<v-icon name="add" />
 			</AppSidebarItem>
@@ -47,20 +44,20 @@
 		<AppSidebarItemList>
 			<AppSidebarItem
 				:link="{ name: 'game-library' }"
-				:tooltip="$t('navigation.sidebar.links.search')"
+				:tooltip="$t('navigation.sidebar.tooltips.search')"
 			>
 				<v-icon name="search" />
 			</AppSidebarItem>
 			<AppSidebarItem
 				:link="{ name: 'help' }"
-				:tooltip="$t('navigation.sidebar.links.help')"
+				:tooltip="$t('navigation.sidebar.tooltips.help')"
 			>
 				<v-icon name="help" />
 			</AppSidebarItem>
 			<AppSidebarItem
 				:link="{ name: 'account' }"
 				:link-redirectable="false"
-				:tooltip="'Minha conta'"
+				:tooltip="$t('navigation.sidebar.tooltips.my-account')"
 				class="user-avatar"
 			>
 				<Avatar :src="user.avatar" alt="User avatar" />

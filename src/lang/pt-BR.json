@@ -24,12 +24,12 @@
 	},
 	"navigation": {
 		"sidebar": {
-			"tips": {
-				"home": "Página Inicial",
-				"game-library": "Biblioteca",
-				"accounts": "Contas",
-				"settings": "Preferências",
-				"logout": "Sair"
+			"tooltips": {
+				"modules": "Módulos",
+				"new-resource": "Novo recurso",
+				"help": "Ajuda",
+				"search": "Encontrar recurso",
+				"my-account": "Minha conta"
 			},
 			"links": {
 				"server": {
@@ -175,7 +175,7 @@
 		"system": {
 			"accounts": {
 				"title": "Usuários",
-				"description": "Contas (ou usários) tem permissões e cargos estritamente definidos e que podem ser alterados por aqui. É possível alterar somente contas com cargos abaixo do seu ou com cargos não-atribuidos.",
+				"description": "Usuários são entidades com cargos e permissões que podem ser definidas invidualmente.",
 				"server-permissions": "Permissões para servidores",
 				"server-description": "Permissões específicas para servidores ficam na página de configurações dos respectivos servidores. Aqui você irá encontrar somente permissões ligadas ao acesso geral de contas à areas do painel.",
 				"all-accounts": "Todas as contas — {count}",

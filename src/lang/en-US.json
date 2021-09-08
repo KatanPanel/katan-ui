@@ -24,12 +24,12 @@
 	},
 	"navigation": {
 		"sidebar": {
-			"tips": {
-				"home": "Home",
-				"game-library": "Game Library",
-				"accounts": "Accounts",
-				"settings": "User Preferences",
-				"logout": "Log out"
+			"tooltips": {
+				"modules": "Modules",
+				"new-resource": "New resource",
+				"help": "Help",
+				"search": "Find resource",
+				"my-account": "My account"
 			},
 			"links": {
 				"server": {
