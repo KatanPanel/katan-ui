@@ -41,7 +41,9 @@ const vm = new Vue({
 		base: process.env.BASE_URL,
 		routes: []
 	}),
-	i18n: new VueI18n(),
+	i18n: new VueI18n({
+		fallbackLocale: "en-US"
+	}),
 	render: (h) => h(App)
 });
 
