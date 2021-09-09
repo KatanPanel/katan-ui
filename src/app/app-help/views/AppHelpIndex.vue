@@ -23,6 +23,22 @@
 <template>
 	<v-container>
 		<h4><b v-text="$t('views.help.title')" /></h4>
+		<v-row>
+			<v-col :size="6">
+				<i18n
+					class="v--text-muted"
+					path="views.help.description"
+					tag="p"
+				>
+					<a
+						href="https://katan.org/docs"
+						target="blank"
+						v-text="$t('views.help.documentation')"
+					/>
+				</i18n>
+			</v-col>
+		</v-row>
+		<hr />
 	</v-container>
 </template>
 
@@ -33,9 +49,11 @@ import { AppNavigationWindowChildMixin } from "@/app/app-navigation/mixins/app-n
 import { MetaInfo } from "vue-meta";
 import { generateMetaInfo } from "@/app/shared/utils/builtin";
 import VContainer from "@/app/shared/components/ui/layout/VContainer.vue";
+import VRow from "@/app/shared/components/ui/layout/VRow.vue";
+import VCol from "@/app/shared/components/ui/layout/VCol.vue";
 
 @Component<AppHelpIndex>({
-	components: { VContainer },
+	components: { VCol, VRow, VContainer },
 	metaInfo(): MetaInfo {
 		return generateMetaInfo(this.$i18n, "help");
 	}
