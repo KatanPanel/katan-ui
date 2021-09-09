@@ -20,6 +20,7 @@
  * SOFTWARE.
  */
 
+import { Consola } from "consola";
 import VueI18n from "vue-i18n";
 import supportedLanguages from "@/supported-languages.json";
 import { isUndefined } from "@/app/shared/utils";
@@ -33,13 +34,15 @@ Vue.use(VueI18n);
 
 @injectable()
 export class I18nService {
-	private readonly logger = this.loggingService.copy("I18n");
+	private readonly logger: Consola;
 	private readonly _cached: string[] = [];
 
 	constructor(
 		@inject() private readonly vue: Vue,
 		@inject() private readonly loggingService: LoggingService
-	) {}
+	) {
+		this.logger = this.loggingService.copy("I18n");
+	}
 
 	public get getI18n(): VueI18n {
 		return this.vue.$i18n;
