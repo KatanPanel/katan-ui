@@ -25,7 +25,7 @@ import { Module } from "@/ioc";
 @Module({
 	router: {
 		path: "/help",
-		name: "app.help",
+		name: "help",
 		component: "AppHelpIndex"
 	}
 })
