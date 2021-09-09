@@ -273,6 +273,11 @@
 					}
 				}
 			}
+		},
+		"help": {
+			"title": "Get Help",
+			"description": "Well, I think you need help, right? Visit our {0} to find tutorials that will guide you to becoming an expert on the Katan Web UI.",
+			"documentation": "official documentation"
 		}
 	},
 	"errors": {
