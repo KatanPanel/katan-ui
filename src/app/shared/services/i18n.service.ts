@@ -80,7 +80,15 @@ export class I18nService {
 	): Promise<void> {
 		const tag = language.tag;
 
-		if (this.getI18n.locale === tag) return;
+		if (
+			tag !== this.getI18n.fallbackLocale &&
+			this.getI18n.locale === tag
+		) {
+			this.loggingService.error({
+				message: `Locale ${tag} already set.`
+			});
+			return;
+		}
 
 		// already loaded, let's set it
 		if (this._cached.includes(tag)) {
@@ -102,15 +110,7 @@ export class I18nService {
 					args: [error]
 				});
 
-				if (isUndefined(fallback) || fallback.length === 0)
-					return await this.loadLanguage(
-						this.getI18n.fallbackLocale as string
-					);
-				else
-					return await this.loadLanguage(
-						fallback[0],
-						fallback.slice(1)
-					);
+				return this.loadFallback(fallback);
 			});
 	}
 
@@ -138,9 +138,17 @@ export class I18nService {
 
 		if (!supported) {
 			this.loggingService.warn(`Unsupported language: ${language}`);
-			return language;
+			return this.loadFallback(fallback);
 		}
 
 		return this.loadLanguage0(supported, fallback);
+	}
+
+	private async loadFallback(fallback?: readonly string[]): Promise<any> {
+		if (isUndefined(fallback) || fallback.length === 0)
+			return await this.loadLanguage(
+				this.getI18n.fallbackLocale as string
+			);
+		else return await this.loadLanguage(fallback[0], fallback.slice(1));
 	}
 }
