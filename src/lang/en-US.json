@@ -175,19 +175,13 @@
 		"system": {
 			"accounts": {
 				"title": "Users",
-				"description": "Users (or accounts) have strictly defined permissions and roles that can be changed here. You can only change users with roles below yours or with unassigned roles.",
-				"server-permissions": "Server permissions",
-				"server-description": "Server-specific permissions are on the settings page for the respective servers. Here you will find only permissions linked to general account access to the panel areas.",
+				"description": "Users are external agents identified by a username and need permissions to perform certain tasks and can be assigned a role. There is also a root user who has full permissions for everything.",
 				"all-accounts": "All users — {count}",
 				"searching": "Searching \"{value}\"...",
 				"permissions": "Permissions",
 				"no-role": "No role assigned.",
 				"results-found": "{value} users found.",
-				"search": "Search",
-				"sorting": {
-					"a-z": "Sort A-Z",
-					"z-a": "Sort Z-A"
-				},
+				"search": "Search users",
 				"field": {
 					"username": "Username",
 					"role": "Role",
