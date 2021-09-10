@@ -2,67 +2,39 @@
 	<div class="auth-layout">
 		<div class="auth-container">
 			<div class="auth-box">
-				<div class="auth-logo">
+				<a href="https://katan.org" target="blank">
 					<TheLogo :match-theme="true" class="auth-logo" />
-				</div>
+				</a>
 				<div class="auth-content-body">
 					<slot />
+					<div class="copyright">
+						&copy; 2020 - {{ new Date().getFullYear() }}
+						<a href="https://katan.org" target="blank">Katan</a>.
+					</div>
 				</div>
-				<!-- <v-flex-box :justify="'flex-end'"
-				class="auth-language-box">
-					<v-dropdown class="auth-language-dropdown">
-						<div class="auth-language">
-							{{ userSettingsPresenter.getSettings.language.name }}
-						</div>
-						<template #items>
-							<v-dropdown-item
-								v-for="language in i18nService.getSupportedLanguages"
-								:key="language.tag"
-								@click="i18nService.loadLanguage0(language)"
-							>
-								<span v-text="language.name" />
-							</v-dropdown-item>
-						</template>
-					</v-dropdown>
-				</v-flex-box> -->
 			</div>
 			<div
 				:style="{
 					backgroundImage: `url(/img/games/illustrations/${wallpaper.file})`
 				}"
 				class="auth-right"
-			>
-				<div class="game-name">
-					{{ wallpaper.name }}
-				</div>
-			</div>
+			/>
 		</div>
 	</div>
 </template>
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import TheLogo from "@/app/shared/components/TheLogo.vue";
-import VFlexBox from "@/app/shared/components/ui/layout/VFlexBox.vue";
-import { inject } from "inversify-props";
-import VDropdown from "@/app/shared/components/ui/dropdown/VDropdown.vue";
-import VDropdownItem from "@/app/shared/components/ui/dropdown/VDropdownItem.vue";
-import { UserSettingsPresenter } from "@/app/user-settings/user-settings.presenter";
 
 @Component<AuthLayout>({
 	components: {
-		VDropdownItem,
-		VDropdown,
-		TheLogo,
-		VFlexBox
+		TheLogo
 	},
 	beforeMount(): void {
 		this.updateWallpaper();
 	}
 })
 export default class AuthLayout extends Vue {
-	@inject()
-	private readonly userSettingsPresenter!: UserSettingsPresenter;
-
 	wallpaper: any | null = null;
 
 	updateWallpaper(): void {
@@ -82,6 +54,24 @@ export default class AuthLayout extends Vue {
 		display: flex;
 		align-items: center;
 		height: 100%;
+
+		.copyright {
+			margin: 12px 0;
+			opacity: 0.38;
+			font-size: 12px;
+			user-select: none;
+			position: absolute;
+			bottom: 0;
+
+			a {
+				text-decoration: none !important;
+			}
+
+			@media (max-width: map-get($breakpoints, "medium")) {
+				a {
+				}
+			}
+		}
 
 		.auth-right {
 			position: relative;
@@ -105,20 +95,6 @@ export default class AuthLayout extends Vue {
 					display: none;
 				}
 			}
-
-			.game-name {
-				position: absolute;
-				bottom: 0;
-				right: 0;
-				color: #fff;
-				z-index: 1001;
-				opacity: 0;
-				margin: 12px;
-				font-size: 18px;
-				user-select: none;
-				font-weight: 600;
-				transition: opacity 500ms;
-			}
 		}
 
 		.auth-box {
@@ -131,6 +107,7 @@ export default class AuthLayout extends Vue {
 			padding: 72px;
 			width: 35%;
 			max-width: 35%;
+			box-shadow: RGB(0 0 0 / 24%) 4px 0 8px 0;
 
 			@media (max-width: map-get($breakpoints, "medium")) {
 				& {
@@ -141,8 +118,8 @@ export default class AuthLayout extends Vue {
 			}
 
 			.auth-logo {
-				max-width: 50px;
-				max-height: 50px;
+				max-width: 54px;
+				max-height: 54px;
 				position: relative;
 				margin-bottom: 144px;
 			}
