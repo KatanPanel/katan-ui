@@ -14,13 +14,11 @@ export default class VInputGroup extends Vue {
 </script>
 <style lang="scss" module>
 .component {
-	background-color: var(--kt-background-secondary);
+	background-color: var(--kt-background-accent);
 	position: relative;
 	display: flex;
-	flex-direction: column;
-	flex-wrap: wrap;
+	flex-direction: row;
 	border-radius: 4px;
-	margin: 6px 0;
 
 	&:focus {
 		.v--label {

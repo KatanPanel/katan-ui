@@ -21,7 +21,7 @@
   -->
 
 <template>
-	<div :class="[$style.component]">
+	<div :class="$style.component">
 		<slot />
 	</div>
 </template>
@@ -34,24 +34,22 @@ export default class VFormInputGroup extends Vue {}
 </script>
 <style lang="scss" module>
 .component {
+	background-color: var(--kt-background-accent);
 	position: relative;
 	display: flex;
-	flex-direction: column;
-	flex-wrap: wrap;
+	flex-direction: row;
 	border-radius: 4px;
-	justify-content: center;
 
-	&:not(:last-child) {
-		margin-bottom: 18px;
+	&:focus {
+		.v--label {
+			color: var(--kt-primary-color);
+		}
 	}
 
-	.v--form-input-icon + .v--form-input {
-		padding-left: 40px;
-
-		& ~ {
-			flex-direction: row;
-			align-items: center;
-		}
+	&.v--input-group-inlined {
+		flex-direction: row;
+		flex-wrap: initial;
+		align-items: center;
 	}
 }
 </style>

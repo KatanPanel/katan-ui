@@ -1,5 +1,5 @@
 <template>
-	<div class="v--input-icon">
+	<div :class="$style.component">
 		<v-icon :name="name" />
 		<slot />
 	</div>
@@ -15,3 +15,15 @@ export default class VInputIcon extends Vue {
 	@Prop({ type: String, required: true }) private readonly name!: string;
 }
 </script>
+<style lang="scss" module>
+.component {
+	padding: 0 6px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	svg {
+		fill: var(--kt-muted-color);
+	}
+}
+</style>
