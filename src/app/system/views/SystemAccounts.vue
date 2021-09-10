@@ -21,143 +21,99 @@
   -->
 
 <template>
-	<app-navigation-window-wrapper>
-		<v-container>
-			<v-row>
-				<v-col :size="8">
-					<h2 v-text="$t('views.system.accounts.title')" />
-					<p v-text="$t('views.system.accounts.description')" />
-					<hr />
-					<section id="filters">
-						<v-box :no-shadow="true">
-							<v-box-body>
-								<v-row>
-									<v-col :size="4">
-										<v-form-input-group>
-											<v-form-label
-												>Ordenar por</v-form-label
-											>
-											<v-select @change="sortAccounts">
-												<v-select-option
-													option-id="a-z"
-												>
-													{{
-														$t(
-															"views.system.accounts.sorting.a-z"
-														)
-													}}
-												</v-select-option>
-												<v-select-option
-													option-id="z-a"
-												>
-													{{
-														$t(
-															"views.system.accounts.sorting.z-a"
-														)
-													}}
-												</v-select-option>
-											</v-select>
-										</v-form-input-group>
-									</v-col>
-									<v-col :size="8">
-										<v-input-group :inlined="true">
-											<v-input-icon name="search" />
-											<v-input
-												v-model.trim="search"
-												:placeholder="
-													$t(
-														'views.system.accounts.search'
-													)
-												"
-												maxlength="64"
-												@input="searchAccounts"
-											/>
-										</v-input-group>
-									</v-col>
-								</v-row>
-							</v-box-body>
-						</v-box>
-					</section>
-					<section id="content">
-						<div class="content">
-							<Loading
-								v-if="accounts === null"
-								class="accounts-loading"
-							/>
-						</div>
-					</section>
-					<v-row>
-						<v-col :size="9">
-							<section id="accounts">
-								<v-flex-box
-									class="v--flex-justify-space-between v--m-top-4"
-								>
-									<small class="v--text-cute">
-										<span
-											v-if="search.length !== 0"
-											key="searching-account"
+	<v-container>
+		<v-row>
+			<v-col :size="8">
+				<v-text :size="4" bold>
+					{{ $t("views.system.accounts.title") }}
+				</v-text>
+				<v-text muted>
+					{{ $t("views.system.accounts.description") }}
+				</v-text>
+				<hr />
+				<v-form-input-group>
+					<v-input
+						v-model.trim="search"
+						:placeholder="$t('views.system.accounts.search')"
+						maxlength="64"
+						@input="searchAccounts"
+					/>
+					<v-input-icon name="search" />
+				</v-form-input-group>
+				<v-row>
+					<v-col :size="9">
+						<section id="accounts" v-if="accounts">
+							<v-flex-box
+								class="v--flex-justify-space-between v--m-top-4"
+							>
+								<small class="v--text-cute">
+									<span
+										v-if="search.length !== 0"
+										key="searching-account"
+									>
+										<i18n
+											path="views.system.accounts.searching"
 										>
-											<i18n
-												path="views.system.accounts.searching"
-											>
-												<template v-slot:value>{{
-													search
-												}}</template>
-											</i18n>
-										</span>
-										<span v-else key="all-accounts">
-											{{
-												$t(
-													"views.system.accounts.all-accounts",
-													{
-														count: -1
-													}
-												)
-											}}
-										</span>
-									</small>
-								</v-flex-box>
-								<p
-									v-if="search.length !== 0"
-									class="v--text-muted v--m-bottom-2"
-								>
-									{{
-										$t(
-											"views.system.accounts.results-found",
-											{
-												value: -1
-											}
-										)
-									}}
-								</p>
-								<v-field-list v-if="accounts">
-									<div v-if="accounts.length !== 0">
-										<transition-group
-											name="v--transition-fast-list"
+											<template v-slot:value>{{
+												search
+											}}</template>
+										</i18n>
+									</span>
+									<span v-else key="all-accounts">
+										{{
+											$t(
+												"views.system.accounts.all-accounts",
+												{
+													count: -1
+												}
+											)
+										}}
+									</span>
+								</small>
+							</v-flex-box>
+							<p
+								v-if="search.length !== 0"
+								class="v--text-muted v--m-bottom-2"
+							>
+								{{
+									$t("views.system.accounts.results-found", {
+										value: -1
+									})
+								}}
+							</p>
+							<v-field-list v-if="accounts">
+								<div v-if="accounts.length !== 0">
+									<transition-group
+										name="v--transition-fast-list"
+									>
+										<!--
+											we need a container here so that the list transitions
+											do not apply to the VField, since it has no transition.
+										-->
+										<div
+											v-for="account in accounts"
+											:key="account.id"
+											class="v--transition-fast-list-item account-item"
 										>
-											<!--
-												we need a container here so that the list transitions
-												do not apply to the VField, since it has no transition.
-											-->
-											<div
-												v-for="account in accounts"
-												:key="account.id"
-												class="v--transition-fast-list-item account-item"
-											>
-												<SystemAccount
-													:account="account"
-												/>
-											</div>
-										</transition-group>
-									</div>
-								</v-field-list>
-							</section>
-						</v-col>
-					</v-row>
-				</v-col>
-			</v-row>
-		</v-container>
-	</app-navigation-window-wrapper>
+											<SystemAccount :account="account" />
+										</div>
+									</transition-group>
+								</div>
+							</v-field-list>
+						</section>
+					</v-col>
+				</v-row>
+				<section id="content">
+					<div class="content">
+						<Loading
+							v-if="accounts === null"
+							class="accounts-loading"
+						/>
+					</div>
+				</section>
+			</v-col>
+		</v-row>
+	</v-container>
 </template>
 
 <script lang="ts">
@@ -178,12 +134,7 @@ import VLabel from "@/app/shared/components/ui/form/VLabel.vue";
 import Copyable from "@/app/shared/components/Copyable.vue";
 import VBox from "@/app/shared/components/ui/box/VBox.vue";
 import VBoxBody from "@/app/shared/components/ui/box/VBoxBody.vue";
-import VWall from "@/app/shared/components/ui/wall/VWall.vue";
 import VBoxHeader from "@/app/shared/components/ui/box/VBoxHeader.vue";
-import {
-	sortAlphabetically,
-	sortAlphabeticallyReversed
-} from "@/app/shared/utils/arrays";
 import { generateMetaInfo } from "@/app/shared/utils/builtin";
 import SystemAccount from "@/app/system/components/SystemAccount.vue";
 import PermissionList from "@/app/shared/components/PermissionList.vue";
@@ -199,9 +150,11 @@ import VFormLabel from "@/app/shared/components/ui/form/VFormLabel.vue";
 import { mixins } from "vue-class-component";
 import { AppNavigationWindowChildMixin } from "@/app/app-navigation/mixins/app-navigation-window-child-mixin.component";
 import AppNavigationWindowWrapper from "@/app/app-navigation/components/AppNavigationWindowWrapper.vue";
+import VText from "@/app/shared/components/ui/typography/VText.vue";
 
 @Component<SystemAccounts>({
 	components: {
+		VText,
 		AppNavigationWindowWrapper,
 		VFormLabel,
 		Loading,
@@ -211,7 +164,6 @@ import AppNavigationWindowWrapper from "@/app/app-navigation/components/AppNavig
 		SystemAccount,
 		PermissionList,
 		VBoxHeader,
-		VWall,
 		VBoxBody,
 		VBox,
 		Copyable,
@@ -248,7 +200,7 @@ export default class SystemAccounts extends mixins(
 ) {
 	// reactive for searching
 	accounts: UserModel[] | null = null;
-	search = "3";
+	search = "";
 	error: any | null = null;
 	@inject() private readonly systemPresenter!: SystemPresenter;
 	@inject() private readonly userPresenter!: UserPresenter;
@@ -258,20 +210,6 @@ export default class SystemAccounts extends mixins(
 	@Watch("search")
 	onSearch(oldValue: string, newValue: string): void {
 		console.log(oldValue, newValue);
-	}
-
-	sortAccounts(option: string): void {
-		// TODO fix this
-		// switch (option) {
-		// 	case "a-z": {
-		// 		sortAlphabetically(this.accounts, "username");
-		// 		break;
-		// 	}
-		// 	case "z-a": {
-		// 		sortAlphabeticallyReversed(this.accounts, "username");
-		// 		break;
-		// 	}
-		// }
 	}
 
 	searchAccounts(): void {
@@ -290,6 +228,7 @@ export default class SystemAccounts extends mixins(
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+	align-items: center;
 }
 
 .accounts-loading {
