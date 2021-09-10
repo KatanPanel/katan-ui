@@ -1,5 +1,4 @@
 const { ContextReplacementPlugin, IgnorePlugin } = require("webpack");
-const supportedLanguages = require("./src/supported-languages.json");
 
 process.env.VUE_APP_VERSION = require("./package.json").version;
 
@@ -15,6 +14,7 @@ module.exports = {
 			.use("vue-svg-inline-loader")
 			.loader("vue-svg-inline-loader");
 
+		const supportedLanguages = require("./src/supported-languages.json");
 		config
 			.plugin("context-replacement")
 			.use(ContextReplacementPlugin, [
@@ -27,6 +27,10 @@ module.exports = {
 			]);
 
 		config.plugin("ignore-plugin").use(IgnorePlugin, [/moment$/]);
+
+		// temporary workaround for
+		// "Uncaught TypeError: Cannot read properties of undefined (reading 'charAt')"
+		config.optimization.minimize(false);
 	},
 	transpileDependencies: ["vuex-module-decorators"]
 };
