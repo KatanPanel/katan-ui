@@ -25,8 +25,9 @@
 		:class="[
 			$style.component,
 			{
-				[$style.colorPrimary]: colorPrimary,
-				[$style.colorDanger]: colorDanger
+				[$style['color-primary']]: colorPrimary,
+				[$style['color-danger']]: colorDanger,
+				[$style['color-warning']]: colorWarning
 			}
 		]"
 	>
@@ -49,6 +50,9 @@ export default class VWall extends Vue {
 	@Prop({ type: Boolean, default: false })
 	private readonly colorDanger!: boolean;
 
+	@Prop({ type: Boolean, default: false })
+	private readonly colorWarning!: boolean;
+
 	get hasTitle(): boolean {
 		return !isUndefined(this.$scopedSlots.title);
 	}
@@ -69,13 +73,18 @@ export default class VWall extends Vue {
 	margin-bottom: 1rem;
 }
 
-.colorPrimary {
+.color-primary {
 	background-color: var(--kt-primary-rgba-color);
 	color: var(--kt-primary-color);
 }
 
-.colorDanger {
+.color-danger {
 	background-color: var(--kt-danger-rgba-color);
 	color: var(--kt-danger-color);
+}
+
+.color-warning {
+	background-color: RGB(var(--kt-warning-color-rgb) / 12%);
+	color: RGB(var(--kt-warning-color-rgb));
 }
 </style>
