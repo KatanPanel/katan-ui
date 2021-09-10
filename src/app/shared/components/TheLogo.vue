@@ -1,6 +1,6 @@
 <template>
-	<img v-if="!containerized" :alt="alt" :src="`/img/logo-${color}.png`" />
-	<div :style="{ backgroundImage: `url(/img/logo-${color}.png)` }" v-else />
+	<img v-if="!containerized" :alt="alt" :src="`/img/${color}`" />
+	<div :style="{ backgroundImage: `url(/img/${color})` }" v-else />
 </template>
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
@@ -20,7 +20,11 @@ export default class TheLogo extends Vue {
 	private readonly alt!: string;
 
 	get color(): string {
-		return this.white ? "white" : this.filled ? "white-filled" : "blue";
+		return this.white
+			? "logo-white.png"
+			: this.filled
+			? "logo-white-filled.png"
+			: "logo.svg";
 	}
 }
 </script>
