@@ -53,6 +53,9 @@ export default class VWall extends Vue {
 	@Prop({ type: Boolean, default: false })
 	private readonly colorWarning!: boolean;
 
+	/**
+	 * Returns if the component has a title.
+	 */
 	get hasTitle(): boolean {
 		return !isUndefined(this.$scopedSlots.title);
 	}
