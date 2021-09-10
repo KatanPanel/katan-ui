@@ -46,6 +46,10 @@ export default class VFormInputGroup extends Vue {}
 		}
 	}
 
+	&:not(:last-child) {
+		margin-bottom: 8px;
+	}
+
 	&.v--input-group-inlined {
 		flex-direction: row;
 		flex-wrap: initial;
