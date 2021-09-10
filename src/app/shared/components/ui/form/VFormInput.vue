@@ -46,7 +46,7 @@ export default class VFormInput extends Vue {
 
 	&::placeholder,
 	&::-webkit-input-placeholder {
-		color: var(--kt-muted-darker-color);
+		color: var(--kt-muted-color);
 	}
 
 	&:not([readonly]):focus {
