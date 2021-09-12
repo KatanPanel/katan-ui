@@ -21,50 +21,27 @@
   -->
 
 <template>
-	<div class="header">
-		<ul class="items">
-			<li
-				v-if="!childrenUnfolded"
-				key="children-folded"
-				v-tooltip.bottom="'Exibir todos os filhos'"
-				@click="toggleChildrenFolding()"
-				@keydown.enter="toggleChildrenFolding()"
-			>
-				<v-icon name="unfold_more" />
-			</li>
-			<li
-				v-else
-				key="children-unfolded"
-				v-tooltip.bottom="'Ocultar todos os filhos'"
-				@click="toggleChildrenFolding()"
-				@keydown.enter="toggleChildrenFolding()"
-			>
-				<v-icon name="unfold_less" />
-			</li>
-		</ul>
-		<ul
-			:class="{
-				'children-unfolded': childrenUnfolded
-			}"
-			class="items windows"
-		>
-			<AppNavigationWindowsBarItem
-				v-for="window in getActiveWindows"
-				:key="window.id"
-				:window="window"
-			/>
-			<li
-				v-if="getActiveWindows.length !== 0"
-				class="window add"
-				tabindex="0"
-				title="Nova janela"
-				@click="createDummyWindow"
-				@keydown.enter="createDummyWindow"
-			>
-				<v-icon name="add" />
-			</li>
-		</ul>
-	</div>
+	<v-container>
+		<div class="header">
+			<ul class="items windows">
+				<AppNavigationWindowsBarItem
+					v-for="window in getActiveWindows"
+					:key="window.id"
+					:window="window"
+				/>
+				<li
+					v-if="getActiveWindows.length !== 0"
+					class="item add"
+					tabindex="0"
+					title="Nova janela"
+					@click="createDummyWindow"
+					@keydown.enter="createDummyWindow"
+				>
+					<v-icon name="add" />
+				</li>
+			</ul>
+		</div>
+	</v-container>
 </template>
 
 <script lang="ts">
@@ -82,9 +59,11 @@ import VDropdownItem from "@/app/shared/components/ui/dropdown/VDropdownItem.vue
 import AppNavigationNavigationWindowIcon from "@/app/app-navigation/components/navigation-window/AppNavigationNavigationWindowIcon.vue";
 import VLabel from "@/app/shared/components/ui/form/VLabel.vue";
 import AppNavigationWindowsBarItem from "@/app/app-navigation/components/AppNavigationWindowsBarItem.vue";
+import VContainer from "@/app/shared/components/ui/layout/VContainer.vue";
 
 @Component({
 	components: {
+		VContainer,
 		AppNavigationWindowsBarItem,
 		VLabel,
 		AppNavigationNavigationWindowIcon,
@@ -94,7 +73,6 @@ import AppNavigationWindowsBarItem from "@/app/app-navigation/components/AppNavi
 	}
 })
 export default class TheAppNavigationWindowsBar extends Vue {
-	childrenUnfolded = false;
 	@inject()
 	private readonly appNavigationPresenter!: AppNavigationPresenter;
 
@@ -106,15 +84,13 @@ export default class TheAppNavigationWindowsBar extends Vue {
 	}
 
 	createDummyWindow(): void {
+		console.log("create dummy window");
 		this.appNavigationPresenter
 			.createWindow(this, { name: "Nova janela" })
 			.then((window) => {
+				console.log("open window", window);
 				this.appNavigationPresenter.openWindow(window, this);
 			});
-	}
-
-	toggleChildrenFolding(): void {
-		this.childrenUnfolded = !this.childrenUnfolded;
 	}
 }
 </script>
@@ -123,17 +99,15 @@ export default class TheAppNavigationWindowsBar extends Vue {
 	position: sticky;
 	top: 0;
 	z-index: 1;
-	border-bottom: 1px solid var(--kt-border-color);
 	justify-content: space-between;
 	display: flex;
 	align-items: center;
-	background-color: var(--kt-background-tertiary);
+	margin-top: 16px;
 
 	.items {
 		display: inline-flex;
 		flex-direction: row;
 		flex-wrap: wrap;
-		margin: 4px 4px 0 4px;
 
 		&:not(.windows) {
 			margin: 4px 8px;
@@ -167,11 +141,18 @@ export default class TheAppNavigationWindowsBar extends Vue {
 
 		&.windows {
 			flex-grow: 1;
+		}
 
-			&.children-folded {
-				::v-deep .children {
-					visibility: visible;
-				}
+		.item.add {
+			display: flex;
+			align-items: center;
+			padding: 6px;
+			color: var(--kt-muted-color);
+			border-radius: 4px;
+
+			&:hover {
+				background-color: var(--kt-background-accent);
+				color: var(--kt-text-color);
 			}
 		}
 	}
