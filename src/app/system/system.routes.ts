@@ -32,9 +32,11 @@ export const SystemRoutes: KatanRouting = {
 			name: "system.accounts",
 			component: "SystemAccounts",
 			meta: {
-				navigationWindowIcon: {
-					type: "svg",
-					value: "group"
+				navigationWindow: {
+					icon: {
+						type: "svg",
+						value: "group"
+					}
 				}
 			}
 		},
