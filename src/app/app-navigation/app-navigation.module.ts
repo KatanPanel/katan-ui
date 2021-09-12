@@ -20,12 +20,18 @@
  * SOFTWARE.
  */
 
-import { Module } from "@/ioc";
+import { KatanModule, Module } from "@/ioc";
 import { AppNavigationStore } from "@/app/app-navigation/store/app-navigation.store";
 import { AppNavigationPresenter } from "@/app/app-navigation/app-navigation.presenter";
+import { Vue } from "vue-property-decorator";
+import { AppNavigationWindowChildMixin } from "@/app/app-navigation/mixins/app-navigation-window-child-mixin.component";
 
 @Module({
 	stateManagement: AppNavigationStore,
 	services: [AppNavigationPresenter]
 })
-export default class AppNavigationModule {}
+export default class AppNavigationModule extends KatanModule {
+	init(): void {
+		Vue.mixin(AppNavigationWindowChildMixin);
+	}
+}
