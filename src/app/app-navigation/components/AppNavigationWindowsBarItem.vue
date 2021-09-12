@@ -129,11 +129,19 @@ export default class AppNavigationWindowsBarItem extends Vue {
 	flex-grow: 1;
 	max-width: 280px;
 	min-height: 36px;
-	border-top-right-radius: 8px;
-	border-top-left-radius: 8px;
+	border-radius: 4px;
+	box-shadow: RGB(0 0 0 / 12%) 0 0 8px 0;
+
+	&:not(:last-child) {
+		margin-right: 8px;
+	}
 
 	&:hover,
 	&:focus {
+		&:not(.active) {
+			background-color: var(--kt-background-accent);
+		}
+
 		.body {
 			.icon {
 				opacity: var(--kt-icon-opacity-focused);
