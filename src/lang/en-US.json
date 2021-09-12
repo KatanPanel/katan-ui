@@ -43,7 +43,7 @@
 		"windows": {
 			"home": "Home",
 			"system": {
-				"accounts": "Users"
+				"accounts": "System Users"
 			},
 			"server": {
 				"overview": "Overview",
