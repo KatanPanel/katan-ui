@@ -117,7 +117,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Watch } from "vue-property-decorator";
+import { Component, Watch, Vue } from "vue-property-decorator";
 import VRow from "@/app/shared/components/ui/layout/VRow.vue";
 import VCol from "@/app/shared/components/ui/layout/VCol.vue";
 import { MetaInfo } from "vue-meta";
@@ -147,15 +147,11 @@ import { UserModel } from "@/app/user/models/user.model";
 import VFormInputGroup from "@/app/shared/components/ui/form/VFormInputGroup.vue";
 import Loading from "@/app/shared/components/Loading.vue";
 import VFormLabel from "@/app/shared/components/ui/form/VFormLabel.vue";
-import { mixins } from "vue-class-component";
-import { AppNavigationWindowChildMixin } from "@/app/app-navigation/mixins/app-navigation-window-child-mixin.component";
-import AppNavigationWindowWrapper from "@/app/app-navigation/components/AppNavigationWindowWrapper.vue";
 import VText from "@/app/shared/components/ui/typography/VText.vue";
 
 @Component<SystemAccounts>({
 	components: {
 		VText,
-		AppNavigationWindowWrapper,
 		VFormLabel,
 		Loading,
 		VFormInputGroup,
@@ -195,9 +191,7 @@ import VText from "@/app/shared/components/ui/typography/VText.vue";
 			});
 	}
 })
-export default class SystemAccounts extends mixins(
-	AppNavigationWindowChildMixin
-) {
+export default class SystemAccounts extends Vue {
 	// reactive for searching
 	accounts: UserModel[] | null = null;
 	search = "";

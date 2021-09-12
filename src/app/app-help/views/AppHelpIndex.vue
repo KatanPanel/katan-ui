@@ -43,9 +43,7 @@
 </template>
 
 <script lang="ts">
-import { Component } from "vue-property-decorator";
-import { mixins } from "vue-class-component";
-import { AppNavigationWindowChildMixin } from "@/app/app-navigation/mixins/app-navigation-window-child-mixin.component";
+import { Component, Vue } from "vue-property-decorator";
 import { MetaInfo } from "vue-meta";
 import { generateMetaInfo } from "@/app/shared/utils/builtin";
 import VContainer from "@/app/shared/components/ui/layout/VContainer.vue";
@@ -58,7 +56,5 @@ import VCol from "@/app/shared/components/ui/layout/VCol.vue";
 		return generateMetaInfo(this.$i18n, "help");
 	}
 })
-export default class AppHelpIndex extends mixins(
-	AppNavigationWindowChildMixin
-) {}
+export default class AppHelpIndex extends Vue {}
 </script>

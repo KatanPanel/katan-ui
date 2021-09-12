@@ -27,12 +27,10 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop } from "vue-property-decorator";
+import { Component, Prop, Vue } from "vue-property-decorator";
 import { MetaInfo } from "vue-meta";
 import { generateMetaInfo } from "@/app/shared/utils/builtin";
 import VContainer from "@/app/shared/components/ui/layout/VContainer.vue";
-import { mixins } from "vue-class-component";
-import { AppNavigationWindowChildMixin } from "@/app/app-navigation/mixins/app-navigation-window-child-mixin.component";
 
 @Component<RoleMain>({
 	components: { VContainer },
@@ -40,10 +38,12 @@ import { AppNavigationWindowChildMixin } from "@/app/app-navigation/mixins/app-n
 		return generateMetaInfo(this.$i18n, "role");
 	},
 	created(): void {
-		this.updateWindow({ title: `Role ${this.id}` });
+		this.$emit("navigation-window:update", {
+			title: `Role ${this.id}`
+		});
 	}
 })
-export default class RoleMain extends mixins(AppNavigationWindowChildMixin) {
+export default class RoleMain extends Vue {
 	@Prop({ type: String, required: true })
 	private readonly id!: string;
 }

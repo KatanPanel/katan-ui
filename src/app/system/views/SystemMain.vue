@@ -21,19 +21,12 @@
   -->
 
 <template>
-	<AppNavigationWindowWrapper>
-		<router-view />
-	</AppNavigationWindowWrapper>
+	<router-view />
 </template>
 
 <script lang="ts">
-import { Component } from "vue-property-decorator";
-import { mixins } from "vue-class-component";
-import { AppNavigationWindowChildMixin } from "@/app/app-navigation/mixins/app-navigation-window-child-mixin.component";
-import AppNavigationWindowWrapper from "@/app/app-navigation/components/AppNavigationWindowWrapper.vue";
+import { Component, Vue } from "vue-property-decorator";
 
-@Component({
-	components: { AppNavigationWindowWrapper }
-})
-export default class SystemMain extends mixins(AppNavigationWindowChildMixin) {}
+@Component
+export default class SystemMain extends Vue {}
 </script>

@@ -57,12 +57,10 @@
 </template>
 
 <script lang="ts">
-import { Component } from "vue-property-decorator";
+import { Component, Vue } from "vue-property-decorator";
 import { MetaInfo } from "vue-meta";
 import { generateMetaInfo } from "@/app/shared/utils/builtin";
 import VContainer from "@/app/shared/components/ui/layout/VContainer.vue";
-import { mixins } from "vue-class-component";
-import { AppNavigationWindowChildMixin } from "@/app/app-navigation/mixins/app-navigation-window-child-mixin.component";
 import { USER_INJECTION_KEY } from "@/app/user/user.module";
 import { UserModel } from "@/app/user/models/user.model";
 import { inject } from "inversify-props";
@@ -85,7 +83,7 @@ import Avatar from "@/app/shared/components/Avatar.vue";
 		return generateMetaInfo(this.$i18n, "home");
 	}
 })
-export default class AppHome extends mixins(AppNavigationWindowChildMixin) {
+export default class AppHome extends Vue {
 	@inject(USER_INJECTION_KEY)
 	private readonly user!: UserModel;
 
