@@ -960,10 +960,10 @@
     colors-named-hex "^1.0.0"
     hsl-matcher "^1.2.3"
 
-"@uiw/codemirror-extensions-hyper-link@^4.21.9":
-  version "4.21.9"
-  resolved "https://registry.yarnpkg.com/@uiw/codemirror-extensions-hyper-link/-/codemirror-extensions-hyper-link-4.21.9.tgz#978b112b75dad4c8b36774558d1bb0383503f909"
-  integrity sha512-6Z5Q4LZpSxRf6iP0BHuTzRj9/jd2GW0WNRdrG4sJVe2Q4C9iweSNQwWnOq0XUiY6OeKvIrDFrulilcnbpGi6bQ==
+"@uiw/codemirror-extensions-hyper-link@^4.21.21":
+  version "4.21.21"
+  resolved "https://registry.yarnpkg.com/@uiw/codemirror-extensions-hyper-link/-/codemirror-extensions-hyper-link-4.21.21.tgz#6b32b7d178e54dcfafa29b4a6c9765c79168c17b"
+  integrity sha512-DvxsVEh/UrecS2Ca7EGYKuu/oghqOH/4dbFlgfOiAXr46PjEAjWYcxMbzEu/9eW5kQmTnW6sUxcEOVNL7IIbyA==
 
 "@vitejs/plugin-vue-jsx@^3.0.2":
   version "3.0.2"
